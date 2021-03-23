@@ -1,1 +1,1 @@
-# barley-break
+# Barley-break game by Alexander Kurmoiarov
