@@ -1,13 +1,11 @@
-import Item from "./item.js"
+import Item from './item.js'
 
 class EmptyItem extends Item {
-    constructor() {
-       super()
-    }
+  constructor() {
+    super()
+  }
 
-    findNeigbors() {
+  findNeigbors() {}
+}
 
-    }
- }
- 
- export default EmptyItem
+export default EmptyItem
