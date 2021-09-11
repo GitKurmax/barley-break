@@ -1,20 +1,20 @@
 .field,
 .item {
-    display: flex;
-    border: 1px solid black;
+  display: flex;
+  border: 1px solid black;
 }
 
 .field {
-    flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .item {
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
-    font-size: 300%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  font-size: 300%;
 }
 
 .clicked {
-    background: lightcyan;
+  background: lightcyan;
 }

@@ -1,6 +1,6 @@
-import drawActions from './drawActions.js'
+import DrawActions from './drawActions.js'
 
-class Main extends drawActions {
+class Main extends DrawActions {
   constructor() {
     super()
   }

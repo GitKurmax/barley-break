@@ -1,7 +1,7 @@
 import Item from './item.js'
 import EmptyItem from './emptyItem.js'
 
-class drawActions {
+class DrawActions {
   _numbersSet = new Set()
   _numbers
   _emptyItem = new EmptyItem()
@@ -19,12 +19,23 @@ class drawActions {
   }
 
   _drawItems(root, width, height) {
-    this._numbers.forEach((number) => {
-      const item = isNaN(number)
-        ? this._emptyItem.create(width, height, number)
-        : new Item().create(width, height, number)
+    root.innerHTML = ''
+    this._emptyItem.findNeigbors(this._numbers)
+    this._numbers.forEach((item, index) => {
+      const domElem = item.create(width, height, item, this)
 
-      root.appendChild(item)
+      root.appendChild(domElem)
+    })
+  }
+
+  _redrawItems(width, height) {
+    const field = document.querySelector('.field')
+    field.innerHTML = ''
+    this._emptyItem.findNeigbors(this._numbers)
+    this._numbers.forEach((item, index) => {
+      const domElem = item.create(width, height, item, this)
+
+      field.appendChild(domElem)
     })
   }
 
@@ -34,8 +45,17 @@ class drawActions {
       this._numbersSet.add(randomNumber)
     }
 
-    return [...this._numbersSet, 'empty']
+    const itemsArr = [...this._numbersSet, 'empty']
+    const itemObjArr = itemsArr.map((number, index) => {
+      const elem = isNaN(number) ? this._emptyItem : new Item()
+
+      elem._generateMatrixPosition(index)
+      elem._addNumber(number)
+      return elem
+    })
+
+    return itemObjArr
   }
 }
 
-export default drawActions
+export default DrawActions
