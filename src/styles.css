@@ -18,3 +18,50 @@
 .clicked {
   background: lightcyan;
 }
+
+.done {
+  background: lightgreen;
+  animation: 2s linear blink_done;
+}
+
+@keyframes blink_done {
+  0% {
+    background: lightgreen;
+  }
+  14% {
+    background: lightgreen;
+  }
+  15% {
+    background: rgb(255, 255, 255);
+  }
+  29% {
+    background: rgb(255, 255, 255);
+  }
+  30% {
+    background: lightgreen;
+  }
+  44% {
+    background: lightgreen;
+  }
+  45% {
+    background: rgb(255, 255, 255);
+  }
+  59% {
+    background: rgb(255, 255, 255);
+  }
+  60% {
+    background: lightgreen;
+  }
+  74% {
+    background: lightgreen;
+  }
+  75% {
+    background: rgb(255, 255, 255);
+  }
+  89% {
+    background: rgb(255, 255, 255);
+  }
+  90% {
+    background: lightgreen;
+  }
+}

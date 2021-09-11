@@ -27,17 +27,6 @@ class DrawActions {
     })
   }
 
-//   _redrawItems(width, height) {
-//     const field = document.querySelector('.field')
-//     field.innerHTML = ''
-//     this._emptyItem.findNeigbors(this._numbers)
-//     this._numbers.forEach((item, index) => {
-//       const domElem = item.create(width, height, item, this)
-// 
-//       field.appendChild(domElem)
-//     })
-//   }
-
   _generateRandomNumber() {
     while (this._numbersSet.size < 15) {
       const randomNumber = Math.floor(Math.random() * 15) + 1
