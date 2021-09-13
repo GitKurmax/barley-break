@@ -15,12 +15,12 @@ class ItemActions {
     })
   }
 
-  addCickToEmpty(empty, numbers) {
+  addCickToEmpty(empty, itemsObj) {
     empty.addEventListener('click', () => {
       const clicked = document.querySelector('.clicked')
       if (clicked) {
-        numbers._numbers = this._swap(numbers._numbers, clicked)
-        this._redrawItems(numbers)
+        itemsObj._numbers = this._swap(itemsObj._numbers, clicked)
+        this._redrawItems(itemsObj)
       }
     })
   }
@@ -47,16 +47,16 @@ class ItemActions {
     return [...newNumbers]
   }
 
-  _redrawItems(numbers) {
+  _redrawItems(itemsObj) {
     const field = document.querySelector('.field')
     field.innerHTML = ''
 
-    const isDone = this._checkIsDone(numbers)
+    const isDone = this._checkIsDone(itemsObj)
     if (isDone) {
-      numbers._numbers.forEach(item => item._isNaighbor = false)
+      itemsObj._numbers.forEach(item => item._isNaighbor = false)
     }
-    numbers._numbers.forEach((item, index) => {
-      const domElem = item.create(150, 150, item, numbers)
+    itemsObj._numbers.forEach((item) => {
+      const domElem = item.create(item, itemsObj)
       if (isDone && item._number !== 'empty') {
         domElem.classList.add('done')
       }

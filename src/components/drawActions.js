@@ -4,7 +4,7 @@ import EmptyItem from './emptyItem.js'
 class DrawActions {
   _numbersSet = new Set()
   _numbers
-  _emptyItem = new EmptyItem()
+  _emptyItem
 
   drawField(width, height) {
     const field = document.createElement('div')
@@ -12,8 +12,9 @@ class DrawActions {
     field.style.width = width + 'px'
     field.style.height = height + 'px'
 
-    this._numbers = this._generateRandomNumber()
-    this._drawItems(field, width / 4, height / 4)
+    this._generateRandomNumber()
+    this._generateItems(width / 4, height / 4)
+    this._drawItems(field)
 
     return field
   }
@@ -22,7 +23,7 @@ class DrawActions {
     root.innerHTML = ''
     this._emptyItem.findNeigbors(this._numbers)
     this._numbers.forEach((item, index) => {
-      const domElem = item.create(width, height, item, this)
+      const domElem = item.create(item, this)
       root.appendChild(domElem)
     })
   }
@@ -32,17 +33,20 @@ class DrawActions {
       const randomNumber = Math.floor(Math.random() * 15) + 1
       this._numbersSet.add(randomNumber)
     }
+  }
 
+  _generateItems(width, height) {
     const itemsArr = [...this._numbersSet, 'empty']
+    this._emptyItem = new EmptyItem(width, height)
     const itemObjArr = itemsArr.map((number, index) => {
-      const elem = isNaN(number) ? this._emptyItem : new Item()
+      const elem = isNaN(number) ?  this._emptyItem : new Item(width, height)
 
       elem._generateMatrixPosition(index)
       elem._addNumber(number)
       return elem
     })
 
-    return itemObjArr
+    this._numbers = itemObjArr
   }
 }
 

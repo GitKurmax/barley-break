@@ -1,26 +1,28 @@
 import ItemActions from './itemActions.js'
 
 class Item extends ItemActions {
-  constructor() {
+  constructor(width, height) {
     super()
+    this.width = width
+    this.height = height
     
   }
-  create(width, height, number, numbers) {
-    const item = document.createElement('div')
-    item.classList.add('item')
+  create(item, itemsObj) {
+    const domElem = document.createElement('div')
+    domElem.classList.add('item')
 
-    item.style.width = width + 'px'
-    item.style.height = height + 'px'
+    domElem.style.width = this.width + 'px'
+    domElem.style.height = this.height + 'px'
 
-    if (!isNaN(number._number)) {
-      item.innerText = number._number
+    if (!isNaN(item._number)) {
+      domElem.innerText = item._number
     } else {
-      item.classList.add('empty')
+      domElem.classList.add('empty')
     }
 
-    if(this._isNaighbor) this.addCickAction(item)
-    if(this._number === 'empty') this.addCickToEmpty(item, numbers)
-    return item
+    if(this._isNaighbor) this.addCickAction(domElem)
+    if(this._number === 'empty') this.addCickToEmpty(domElem, itemsObj)
+    return domElem
   }
 
   _generateMatrixPosition(index) {
